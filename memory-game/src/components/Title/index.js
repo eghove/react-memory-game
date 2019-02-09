@@ -9,7 +9,7 @@ function Title (props) {
   return (
     <div className='row'>
       <div className='col-md-12'>
-        <div className = 'jumbotron'>
+        <div className = 'jumbotron text-center'>
           <h1 class="display-4">{props.children}</h1>
           <p className = 'lead'>{props.message}</p>
         </div>
