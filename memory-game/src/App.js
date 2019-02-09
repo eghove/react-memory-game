@@ -4,6 +4,7 @@ import React from 'react';
 import Wrapper from './components/Wrapper';
 import Title from './components/Title';
 // import './App.css';
+import Navbar from './components/NavBar'
 
 // keeping all this commented out in case I end up needing it
 // class App extends Component {
@@ -32,6 +33,11 @@ import Title from './components/Title';
 function App () {
   return (
     <Wrapper>
+      <Navbar 
+        title = 'Memory Game'
+        userScore = {0}
+        topScore = {0} 
+      />
       <Title
         title = 'Memory Game'
         message = 'A simple click-based memory game.'/>
