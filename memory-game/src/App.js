@@ -32,7 +32,9 @@ import Title from './components/Title';
 function App () {
   return (
     <Wrapper>
-      <Title message = 'A simple click-based memory game.'>Memory Game</Title>
+      <Title
+        title = 'Memory Game'
+        message = 'A simple click-based memory game.'/>
     </Wrapper>
   );
 }

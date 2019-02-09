@@ -10,7 +10,7 @@ function Title (props) {
     <div className='row'>
       <div className='col-md-12'>
         <div className = 'jumbotron text-center'>
-          <h1 class="display-4">{props.children}</h1>
+          <h1 class="display-4">{props.title}</h1>
           <p className = 'lead'>{props.message}</p>
         </div>
       </div>
