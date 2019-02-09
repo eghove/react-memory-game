@@ -3,10 +3,19 @@
 // Title component index.js file
 
 import React from 'react';
-import './style.css';
+// import './style.css';
 
 function Title (props) {
-  return <h1 className = 'title'>{props.children}</h1>
+  return (
+    <div className='row'>
+      <div className='col-md-12'>
+        <div className = 'jumbotron'>
+          <h1 class="display-4">{props.children}</h1>
+          <p className = 'lead'>{props.message}</p>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default Title;
