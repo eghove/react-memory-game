@@ -30,10 +30,13 @@ class App extends Component {
         <Title
           title='Memory Game'
           message='A simple click-based memory game.' />
-        <MemoryCard
-          name = {spaceObjects[0].name}
-          image = {spaceObjects[0].image}
-          id = {spaceObjects[0].id}/>
+      {this.state.spaceObjects.map(spaceObject => (
+        <MemoryCard 
+          id = {spaceObject.id}
+          name = {spaceObject.name}
+          image = {spaceObject.image}
+        />
+      ))}
 
       </Wrapper>
     );
