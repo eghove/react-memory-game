@@ -9,17 +9,17 @@ import Title from './components/Title';
 // import the sticky navbar/scoreboard component
 import Navbar from './components/NavBar';
 // import the JSON object with the space objects for the memory game
-// const spaceObjects =  './spaceOjects.json';
+import spaceObjects from './spaceObjects';
 // import the MemoryCard component
-
+import MemoryCard from './components/MemoryCard';
 class App extends Component {
   // setting this.state.spaceObjects to the spaceObjects JSON array
-  // state = {
-  //   spaceObjects
-  // };
+  state = {
+    spaceObjects
+  };
 
   render() {
-   
+    console.log(spaceObjects);
     return (
       <Wrapper>
         <Navbar
@@ -30,6 +30,9 @@ class App extends Component {
         <Title
           title='Memory Game'
           message='A simple click-based memory game.' />
+        <MemoryCard
+          name = {spaceObjects[0].name}
+          image = {spaceObjects[0].image} />
 
       </Wrapper>
     );
