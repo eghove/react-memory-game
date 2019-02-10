@@ -19,7 +19,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(spaceObjects);
     return (
       <Wrapper>
         <Navbar
@@ -30,13 +29,18 @@ class App extends Component {
         <Title
           title='Memory Game'
           message='A simple click-based memory game.' />
-      {this.state.spaceObjects.map(spaceObject => (
-        <MemoryCard 
-          id = {spaceObject.id}
-          name = {spaceObject.name}
-          image = {spaceObject.image}
-        />
-      ))}
+          
+          
+        <div className="row">
+            {this.state.spaceObjects.map(spaceObject => (
+              <MemoryCard
+                id={spaceObject.id}
+                name={spaceObject.name}
+                image={spaceObject.image}
+              />
+            ))}
+        </div>
+
 
       </Wrapper>
     );
