@@ -19,7 +19,8 @@ class App extends Component {
     spaceObjects,
     score: 0,
     topScore: 0,
-    guessed: [0]
+    guessed: [],
+    playing: true
   };
 
 
@@ -66,8 +67,19 @@ class App extends Component {
     this.setState( {guessed: currentGuessed});
   }
 
+  checkGuessed = id => {
+    for (let i=0; i < this.state.guessed.length; i++) {
+      if(id===this.state.guessed[i]) {
+        return this.setState( {playing: false});
+      } else {
+        // console.log("keep guessing");
+      }
+  }
+}
+
   // function that handles the card clicks or "guess"
   handleUpdate = id => {
+    this.checkGuessed(id);
     // calls updateGuess
     this.updateGuessed(id);
     // calls updateScore
@@ -75,6 +87,7 @@ class App extends Component {
     // calls the handleRandomize
     this.handleRandomize();
   }
+
 
   
   componentDidMount() {
