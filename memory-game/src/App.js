@@ -32,7 +32,8 @@ class App extends Component {
           message='A simple click-based memory game.' />
         <MemoryCard
           name = {spaceObjects[0].name}
-          image = {spaceObjects[0].image} />
+          image = {spaceObjects[0].image}
+          id = {spaceObjects[0].id}/>
 
       </Wrapper>
     );
