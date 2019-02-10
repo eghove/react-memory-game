@@ -12,10 +12,14 @@ import Navbar from './components/NavBar';
 import spaceObjects from './spaceObjects';
 // import the MemoryCard component
 import MemoryCard from './components/MemoryCard';
+// making app the stateful component
 class App extends Component {
   // setting this.state.spaceObjects to the spaceObjects JSON array
   state = {
-    spaceObjects
+    spaceObjects,
+    score: 0,
+    topScore: 0,
+    guessed: [0]
   };
 
 
@@ -23,7 +27,7 @@ class App extends Component {
   handleRandomize = () => {
     let temp = this.state.spaceObjects
     function shuffle(array) {
-      var currentIndex = array.length, temporaryValue, randomIndex;
+      let currentIndex = array.length, temporaryValue, randomIndex;
     
       // While there remain elements to shuffle...
       while (0 !== currentIndex) {
@@ -39,14 +43,40 @@ class App extends Component {
       }
       temp = array;
     }
+    // call the shuffle function
     shuffle(temp);
-    this.setState(temp);
+    // set spaceObject to the shuffled temp
+    this.setState({spaceObjects:temp});
+    console.log(this.state);
   }
 
+  // function that updates the score
+  updateScore = () => {
+    let currentScore = this.state.score;
+    currentScore = currentScore + 1;
+    this.setState( {score: currentScore} );
+  }
+
+  // function that updates guessed
+  updateGuessed = id => {
+    let currentGuessed = this.state.guessed;
+    // push the guessed ids into the guessed array
+    currentGuessed.push(id);
+    // store the updated guessed array
+    this.setState( {guessed: currentGuessed});
+  }
+
+  // function that handles the card clicks or "guess"
   handleUpdate = id => {
+    // calls updateGuess
+    this.updateGuessed(id);
+    // calls updateScore
+    this.updateScore();
+    // calls the handleRandomize
     this.handleRandomize();
   }
 
+  
   componentDidMount() {
     // makes sure it start from a randomized state
     this.handleRandomize();
@@ -59,7 +89,7 @@ class App extends Component {
         {/* the NavBar/ScoreBoard Component */}
         <Navbar
           title='Memory Game'
-          userScore={0}
+          userScore={this.state.score}
           topScore={0}
         />
 
