@@ -43,6 +43,10 @@ class App extends Component {
     this.setState(temp);
   }
 
+  handleUpdate = id => {
+    this.handleRandomize();
+  }
+
   componentDidMount() {
     // makes sure it start from a randomized state
     this.handleRandomize();
@@ -73,6 +77,7 @@ class App extends Component {
               id={spaceObject.id}
               name={spaceObject.name}
               image={spaceObject.image}
+              handleUpdate = {this.handleUpdate}
             />
           ))}
         </div>
