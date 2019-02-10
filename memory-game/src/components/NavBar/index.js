@@ -4,7 +4,7 @@ import React from 'react';
 function Navbar (props) {
   return(
     <nav className = "navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <a class = "navbar-brand" href = "/" alt = {props.title}>{props.title}</a>
+        <a className = "navbar-brand" href = "/" alt = {props.title}>{props.title}</a>
         <ul className = "navbar-nav mr-auto">
           <li className = "nav-item">Click an image to start!</li>
         </ul>

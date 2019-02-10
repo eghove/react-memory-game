@@ -1,0 +1,7 @@
+[
+  {
+    "id" : 1,
+    "name" : "Mercury",
+    "image": "%PUBLIC_URL%/img/Mercury.jpg"
+  }
+]

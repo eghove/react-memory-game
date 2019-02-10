@@ -1,48 +1,38 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable semi */
-import React from 'react';
+import React, { Component } from 'react';
+// import the wrapper component
 import Wrapper from './components/Wrapper';
+// import the title/jumbotron component
 import Title from './components/Title';
 // import './App.css';
-import Navbar from './components/NavBar'
+// import the sticky navbar/scoreboard component
+import Navbar from './components/NavBar';
+// import the JSON object with the space objects for the memory game
+// const spaceObjects =  './spaceOjects.json';
+// import the MemoryCard component
 
-// keeping all this commented out in case I end up needing it
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <p>
-//             Edit <code>src/App.js</code> and save to reload.
-//           </p>
-//           <a
-//             className="App-link"
-//             href="https://reactjs.org"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Learn React
-//           </a>
-//         </header>
-//       </div>
-//     );
-//   }
-// }
+class App extends Component {
+  // setting this.state.spaceObjects to the spaceObjects JSON array
+  // state = {
+  //   spaceObjects
+  // };
 
-function App () {
-  return (
-    <Wrapper>
-      <Navbar 
-        title = 'Memory Game'
-        userScore = {0}
-        topScore = {0} 
-      />
-      <Title
-        title = 'Memory Game'
-        message = 'A simple click-based memory game.'/>
-    </Wrapper>
-  );
+  render() {
+   
+    return (
+      <Wrapper>
+        <Navbar
+          title='Memory Game'
+          userScore={0}
+          topScore={0}
+        />
+        <Title
+          title='Memory Game'
+          message='A simple click-based memory game.' />
+
+      </Wrapper>
+    );
+  }
 }
-
 export default App;
