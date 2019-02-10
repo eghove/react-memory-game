@@ -8,6 +8,10 @@
   box-shadow: 0 3px 6px #999, 0 3px 6px #999;
   text-align: left;
 } */
+.card {
+  margin: 1rem;
+
+}
 
 .card > .img-container {
   height: 100%;
