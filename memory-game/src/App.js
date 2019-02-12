@@ -66,6 +66,17 @@ class App extends Component {
     this.setState({ guessed: currentGuessed });
   }
 
+  // function that resets the state
+  resetGame = () => {
+    this.setState({
+      spaceObjects,
+      score: 0,
+      topScore: 0,
+      guessed: [0],
+      playing: true
+    })
+  }
+
   // checks to see if an image has already been guessed
   checkGuessed = id => {
     // make a tempArray and set that value=this.state.guessed
@@ -99,7 +110,7 @@ class App extends Component {
 
   // function that handles the card clicks or "guess"
   handleUpdate = id => {
-    
+
     if (this.checkGuessed(id) === false && this.state.playing === true) {
       // update the guessed array
       this.updateGuessed(id);
@@ -107,6 +118,7 @@ class App extends Component {
       this.updateScore();
     } else {
       console.log("GAME OVER!")
+      this.resetGame();
     }
 
     // no matter what, randomize the board
@@ -117,6 +129,8 @@ class App extends Component {
 
 
   componentDidMount() {
+    // make sure the state is reset
+    this.resetGame();
     // makes sure it start from a randomized state 
     this.handleRandomize();
   }
