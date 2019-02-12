@@ -19,7 +19,7 @@ class App extends Component {
     spaceObjects,
     score: 0,
     topScore: 0,
-    guessed: [],
+    guessed: [0],
     playing: true
   };
 
@@ -29,14 +29,14 @@ class App extends Component {
     let temp = this.state.spaceObjects
     function shuffle(array) {
       let currentIndex = array.length, temporaryValue, randomIndex;
-    
+
       // While there remain elements to shuffle...
       while (0 !== currentIndex) {
-    
+
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-    
+
         // And swap it with the current element.
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
@@ -47,15 +47,14 @@ class App extends Component {
     // call the shuffle function
     shuffle(temp);
     // set spaceObject to the shuffled temp
-    this.setState({spaceObjects:temp});
-    console.log(this.state);
+    this.setState({ spaceObjects: temp });
   }
 
   // function that updates the score
   updateScore = () => {
     let currentScore = this.state.score;
     currentScore = currentScore + 1;
-    this.setState( {score: currentScore} );
+    this.setState({ score: currentScore });
   }
 
   // function that updates guessed
@@ -64,37 +63,64 @@ class App extends Component {
     // push the guessed ids into the guessed array
     currentGuessed.push(id);
     // store the updated guessed array
-    this.setState( {guessed: currentGuessed});
+    this.setState({ guessed: currentGuessed });
   }
 
+  // checks to see if an image has already been guessed
   checkGuessed = id => {
-    for (let i=0; i < this.state.guessed.length; i++) {
-      if(id===this.state.guessed[i]) {
-        return this.setState( {playing: false});
-      } else {
-        // console.log("keep guessing");
+    // make a tempArray and set that value=this.state.guessed
+    let tempArray = this.state.guessed
+
+    // inner function that does the checking
+    function innerFunction(id, array) {
+      // set initial value of hasBeenGuessed to false
+      let hasBeenGuessed = false;
+      // for loop that checks every item in the array
+      for (let i = 0; i < array.length; i++) {
+        if (id === array[i]) {
+          // if the id matches something already in the array, set hasBeenGuessed=true and return it.
+          hasBeenGuessed = true;
+
+          return hasBeenGuessed;
+        }
       }
+      // pass out hasBeenGuessed to the parent checkGuessed function
+      return hasBeenGuessed;
+    }
+
+    if (innerFunction(id, tempArray) === true) {
+      // if hasBeenGuessed gets flipped to true, the game is over
+      this.setState({ playing: false });
+      return true
+    } else {
+      return false;
+    }
   }
-}
 
   // function that handles the card clicks or "guess"
   handleUpdate = id => {
-    this.checkGuessed(id);
-    // calls updateGuess
-    this.updateGuessed(id);
-    // calls updateScore
-    this.updateScore();
-    // calls the handleRandomize
+    
+    if (this.checkGuessed(id) === false && this.state.playing === true) {
+      // update the guessed array
+      this.updateGuessed(id);
+      // update the game score
+      this.updateScore();
+    } else {
+      console.log("GAME OVER!")
+    }
+
+    // no matter what, randomize the board
     this.handleRandomize();
+
   }
 
 
-  
+
   componentDidMount() {
-    // makes sure it start from a randomized state
+    // makes sure it start from a randomized state 
     this.handleRandomize();
   }
-  
+
   render() {
     return (
       <Wrapper>
@@ -116,11 +142,11 @@ class App extends Component {
         <div className="row">
           {this.state.spaceObjects.map(spaceObject => (
             <MemoryCard
-              key = {spaceObject.id}
+              key={spaceObject.id}
               id={spaceObject.id}
               name={spaceObject.name}
               image={spaceObject.image}
-              handleUpdate = {this.handleUpdate}
+              handleUpdate={this.handleUpdate}
             />
           ))}
         </div>
