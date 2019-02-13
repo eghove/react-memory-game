@@ -13,7 +13,7 @@ function Title(props) {
           <div className='jumbotron text-center'>
             <h1 className="display-4">{props.title}</h1>
             <p className='lead'>{props.message}</p>
-            <div className='alert alert-success' role='alert'>You got a new high score!</div>
+            <p className='alert alert-success' role='alert'>You got a new high score!</p>
           </div>
         </div>
       </div>
