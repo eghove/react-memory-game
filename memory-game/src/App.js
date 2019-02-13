@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import Wrapper from './components/Wrapper';
 // import the title/jumbotron component
 import Title from './components/Title';
-// import './App.css';
 // import the sticky navbar/scoreboard component
 import Navbar from './components/NavBar';
 // import the JSON object with the space objects for the memory game
@@ -129,7 +128,6 @@ class App extends Component {
     
     // when the game is over, do this
     } else {
-      console.log("GAME OVER!")
       // if the user hit a new high score, update topScore accordingly
       if(this.state.score > this.state.topScore) {
         let temp = this.state.score;
@@ -138,20 +136,13 @@ class App extends Component {
       // reset the game, except for topScore
       this.resetGame();
     }
-
     // no matter what, randomize the board
     this.handleRandomize();
-    
-
   }
-
-
 
   componentDidMount() {
     // make sure the state is back to the initial state
     this.resetGame();
-    
-
     // makes sure it start from a randomized state 
     this.handleRandomize();
   }
