@@ -20,7 +20,8 @@ class App extends Component {
     score: 0,
     topScore: 0,
     guessed: [0],
-    playing: true
+    playing: true,
+    highscore: false
   };
 
 
@@ -76,6 +77,13 @@ class App extends Component {
     })
   }
 
+  // function that sets the initial state
+  initialState = () => {
+    this.resetGame();
+    this.setState({topScore:0, highscore: false});
+
+  }
+
   // checks to see if an image has already been guessed
   checkGuessed = id => {
     // make a tempArray and set that value=this.state.guessed
@@ -109,6 +117,8 @@ class App extends Component {
 
   // function that handles the card clicks or "guess"
   handleUpdate = id => {
+    // make sure the click resets highscore to false
+    this.setState({highscore: false});
 
     // while the game is still being played, do this:
     if (this.checkGuessed(id) === false && this.state.playing === true) {
@@ -123,7 +133,7 @@ class App extends Component {
       // if the user hit a new high score, update topScore accordingly
       if(this.state.score > this.state.topScore) {
         let temp = this.state.score;
-        this.setState({topScore: temp})
+        this.setState({topScore: temp, highscore: true})
       }
       // reset the game, except for topScore
       this.resetGame();
@@ -131,6 +141,7 @@ class App extends Component {
 
     // no matter what, randomize the board
     this.handleRandomize();
+    
 
   }
 
@@ -139,7 +150,7 @@ class App extends Component {
   componentDidMount() {
     // make sure the state is back to the initial state
     this.resetGame();
-    this.setState({topScore:0});
+    
 
     // makes sure it start from a randomized state 
     this.handleRandomize();
@@ -151,15 +162,16 @@ class App extends Component {
 
         {/* the NavBar/ScoreBoard Component */}
         <Navbar
-          title='Memory Game'
+          title='Planetary Memory Game'
           userScore={this.state.score}
           topScore={this.state.topScore}
         />
 
         {/* the Title Component */}
         <Title
-          title='Memory Game'
-          message='A simple click-based memory game.'
+          title='Planetary Memory Game'
+          message='A simple click-based memory game, using React.js.'
+          highscore= {this.state.highscore}
         />
 
         {/* the Memory card display component */}
