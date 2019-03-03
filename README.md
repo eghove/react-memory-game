@@ -17,3 +17,5 @@ Planetary Memory Game uses the following technologies:
 * React.js.
 
 ## What Does Planetary Memory Game Look Like?
+
+![Planetary Memory Main Screen](https://eghove.github.io/img/portfolio/planetary-memory-game.PNG "Planetary Memory Main Screen")
